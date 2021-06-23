@@ -21,6 +21,7 @@
 
     .minions {
         position: relative;
+        margin-left: 18px;
     }
 
     .body {
@@ -576,33 +577,97 @@
             box-shadow: 0 0 8px #d5093c;
         }
     }
-    
+
     .text {
         text-align: center;
         color: #fff;
         text-shadow: 0 0 5px #CCCCCC, 0 0 10px #CCCCCC, 0 0 15px #CCCCCC, 0 0 20px #F9D946, 0 0 25px #F9D946, 0 0 30px #F9D946, 0 0 50px #F9D946, 0 0 80px #F9D946, 0 0 100px #F9D946, 0 0 150px #F9D946;
-        animation: suspendedAnima 1.5s infinite;
+        animation: textTop 1s ease-in;
         position: absolute;
         left: 0px;
         right: 0px;
         margin: 0 auto;
         top: 50px;
     }
-    .textHide{
+
+    .textHide {
         display: none;
+    }
+
+    @keyframes textTop {
+        0% {
+            top: 0px;
+        }
+
+        10% {
+            top: 10px;
+        }
+
+        20% {
+            top: 20px;
+        }
+
+        30% {
+            top: 30px;
+        }
+
+        40% {
+            top: 40px;
+        }
+
+        50% {
+            top: 50px;
+        }
+
+        60% {
+            top: 40px;
+        }
+
+        70% {
+            top: 50px;
+        }
+
+        80% {
+            top: 40px;
+        }
+
+        90% {
+            top: 45px;
+        }
+
+        100% {
+            top: 50px;
+        }
+    }
+
+    .text-suspendedAnima {
+        animation: suspendedAnima 1.5s infinite;
     }
 
     @keyframes suspendedAnima {
         0% {
             opacity: 1;
+            text-shadow: 0 0 5px #CCCCCC, 0 0 10px #CCCCCC, 0 0 15px #CCCCCC, 0 0 20px #F9D946, 0 0 25px #F9D946, 0 0 30px #F9D946, 0 0 50px #F9D946, 0 0 80px #F9D946, 0 0 100px #F9D946, 0 0 150px #F9D946;
+        }
+
+        25% {
+            opacity: .8;
+            text-shadow: 0 0 5px #CCCCCC, 0 0 10px #CCCCCC, 0 0 15px #CCCCCC, 0 0 20px #99FF00, 0 0 25px #99FF00, 0 0 30px #99FF00, 0 0 50px #99FF00, 0 0 80px #99FF00, 0 0 100px #99FF00, 0 0 150px #99FF00;
         }
 
         50% {
             opacity: .6;
+            text-shadow: 0 0 5px #CCCCCC, 0 0 10px #CCCCCC, 0 0 15px #CCCCCC, 0 0 20px #00CCFF, 0 0 25px #00CCFF, 0 0 30px #00CCFF, 0 0 50px #00CCFF, 0 0 80px #00CCFF, 0 0 100px #00CCFF, 0 0 150px #00CCFF;
+        }
+
+        75% {
+            opacity: .8;
+            text-shadow: 0 0 5px #CCCCCC, 0 0 10px #CCCCCC, 0 0 15px #CCCCCC, 0 0 20px #E6941A, 0 0 25px #E6941A, 0 0 30px #E6941A, 0 0 50px #E6941A, 0 0 80px #E6941A, 0 0 100px #E6941A, 0 0 150px #E6941A;
         }
 
         100% {
             opacity: 1;
+            text-shadow: 0 0 5px #CCCCCC, 0 0 10px #CCCCCC, 0 0 15px #CCCCCC, 0 0 20px #F9D946, 0 0 25px #F9D946, 0 0 30px #F9D946, 0 0 50px #F9D946, 0 0 80px #F9D946, 0 0 100px #F9D946, 0 0 150px #F9D946;
         }
     }
 </style>
@@ -678,8 +743,19 @@
 <script>
     let chest = document.getElementById('chest')
     let text = document.getElementById('text')
-    chest.onclick = function(){
+    let switchs = false
+    chest.onclick = () => {
         text.classList.toggle('textHide')
+        window.clearTimeout('setTimeout')
+        if (switchs) {
+            text.classList.remove('text-suspendedAnima')
+        } else {
+            let timer = setTimeout(() => {
+                text.classList.add('text-suspendedAnima')
+            }, 1000)
+        }
+        switchs = !switchs
     }
 </script>
+
 </html>
